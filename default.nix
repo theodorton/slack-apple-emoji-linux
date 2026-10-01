@@ -2,9 +2,7 @@
 #
 #   pkgs.callPackage ./default.nix { }
 #
-# or as an overlay:
-#
-#   final: prev: { slack = final.callPackage ./default.nix { inherit (prev) slack; }; }
+# or through the overlay in flake.nix (overlays.default).
 { slack, python3 }:
 
 slack.overrideAttrs (old: {
