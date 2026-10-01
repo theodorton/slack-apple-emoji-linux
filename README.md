@@ -32,6 +32,19 @@ Without flakes:
 pkgs.callPackage ./default.nix { }
 ```
 
+### Without Nix
+
+You only need Python 3. Quit Slack completely, then patch `app.asar` in place. With the `.deb` and `.rpm` packages it is in `/usr/lib/slack/resources/`:
+
+```sh
+cd /usr/lib/slack/resources
+sudo cp app.asar app.asar.orig
+python3 /path/to/patch-asar.py app.asar.orig /tmp/app.asar /path/to/apple-emoji.cjs
+sudo cp /tmp/app.asar app.asar
+```
+
+Always patch from the unmodified archive. The patcher refuses an archive it has already patched. To undo, copy `app.asar.orig` back. Slack updates replace `app.asar`, so run it again after each update, and make a fresh `app.asar.orig` first. The Flatpak and Snap packages are read-only, so this doesn't work with them.
+
 ## How it works
 
 Slack loads emoji images from its CDN, from paths like
