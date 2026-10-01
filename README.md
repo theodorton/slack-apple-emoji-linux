@@ -8,7 +8,7 @@ Add the flake as an input and apply the overlay. Slack is unfree, so `allowUnfre
 
 ```nix
 {
-  inputs.slack-emoji.url = "github:theodorton/slack-emoji"; # or "path:/path/to/slack-emoji"
+  inputs.slack-emoji.url = "github:theodorton/slack-apple-emoji-linux";
 
   outputs = { nixpkgs, slack-emoji, ... }: {
     nixosConfigurations.<host> = nixpkgs.lib.nixosSystem {
